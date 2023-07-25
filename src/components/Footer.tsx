@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <p>Desenvolvido por Maria Vitória Kunz 👑</p>
+    <footer>Desenvolvido por Maria Vitória Kunz 👑</footer>
   )
 }
 

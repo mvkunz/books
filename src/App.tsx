@@ -53,6 +53,7 @@ function App() {
   return (
     <div>
       <Header />
+      <p>Seus livros:</p>
       <ul>
         {booksList.map((book) => (
           <Book
@@ -61,9 +62,7 @@ function App() {
           />
         ))}
       </ul>
-      <div className="footer-tag">
-        <Footer />
-      </div>
+       <Footer />
     </div>
   )
 }
