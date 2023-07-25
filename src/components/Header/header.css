@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100&display=swap');
+
+.header {
+  background-color: #116A7B;
+  box-shadow: 0 0 8px #333;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 16px 10%;
+  position: fixed;
+  width: 100%;
+}
+
+.header-user {
+  color: #ECE5C7;
+  font-weight: bold;
+  font-family: 'Archivo', sans-serif;
+  font-size: 20px;
+  text-align: center;
+}

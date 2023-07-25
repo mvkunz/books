@@ -1,15 +1,18 @@
+import './book.css';
+
 type BookProps = {
   book: {
-    title: string,
-    pages: number,
-    isRead: boolean,
-    isFavorite: boolean
-  }
+    title: string;
+    pages: number;
+    isRead: boolean;
+    isFavorite: boolean;
+  };
 };
 
 function Book({ book }: BookProps) {
+  const favoriteClass = book.isFavorite ? 'favorite-book' : '';
   return (
-    <li>
+    <li className={`book-item ${favoriteClass}`}>
       <span>
         {book.isRead ? '✅' : '⏳'}
       </span>
@@ -18,9 +21,10 @@ function Book({ book }: BookProps) {
         {`${book.title} (${book.pages} páginas)`}
       </span>
       {' '}
-      {book.isFavorite && <span>🥰</span>}
+      
+      {book.isFavorite && <span>🤩</span>}
     </li>
-  )
+  );
 }
 
 export default Book;

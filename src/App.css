@@ -6,6 +6,34 @@
   box-sizing: border-box;
 }
 
+.app {
+  background-color: #C2DEDC;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  box-sizing: border-box;
+  flex: 1;
+  margin-top: 60px;
+  padding: 0 10%;
+  width: 100%;
+  color: #116A7B;
+}
+
+.book-list {
+  background-color: #116A7B;
+}
+
+
+/* ESTILIZAÇÃO ANTERIOR: */
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: rgb(62, 62, 62);
   color: rgb(199, 199, 199);
@@ -19,19 +47,22 @@ body {
   text-align: center;
 }
 
+.container {
+  box-sizing: border-box;
+  flex: 1;
+  margin-top: 60px;
+  padding: 0 10%;
+  width: 100%;
+}
+
+h2 {
+  margin: 30px;
+}
+
 ul {
   list-style: none;
 }
 
-footer {
-  position: absolute;
-  bottom: 0; 
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background-color: rgb(199, 199, 199);
-  color: rgb(62, 62, 62);
-  display: flex;
-  align-items: center; 
-  justify-content: center; 
-}
+ul li {
+  margin: 20px;
+} */

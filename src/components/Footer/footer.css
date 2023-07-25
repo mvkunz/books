@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100&display=swap');
+
+footer {
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #116A7B;
+  color: #ECE5C7;
+  font-family: 'Archivo', sans-serif;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
