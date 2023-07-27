@@ -1,4 +1,4 @@
-export const booksList = [
+const booksList = [
   {
     title: 'The fault in our stars',
     pages: 288,
@@ -42,3 +42,9 @@ export const booksList = [
     isFavorite: false,
   },
 ];
+
+export default booksList;
+
+// Se usar o default, a importação é import booksList from './data';
+// Quando usa o export no início: export const...., a importação deverá ser feita entre {}.
+// import { booksList } from './data';

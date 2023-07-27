@@ -1,12 +1,7 @@
 import './book.css';
-
+import { Booktype } from '../../type';
 type BookProps = {
-  book: {
-    title: string;
-    pages: number;
-    isRead: boolean;
-    isFavorite: boolean;
-  };
+  book: Booktype
 };
 
 function Book({ book }: BookProps) {

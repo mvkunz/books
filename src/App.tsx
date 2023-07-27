@@ -1,18 +1,19 @@
+import { useState } from 'react';
 import Header from './components/Header';
 import Title from './components/Title';
 import Footer from './components/Footer';
 import Book from './components/Book';
 import Button from './components/Button/Button';
 
-import { booksList } from './data';
 import './App.css'
-import { useState } from 'react';
+
+import { Booktype } from './type';
 
 function App() {
 
   const [bookTitle, setBookTitle] = useState('');
   const [bookPages, setBookPages] = useState(0);
-  const [books, setBooks] = useState(booksList);
+  const [books, setBooks] = useState<Booktype[]>([]);
 
   function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     setBookTitle(event.target.value);
