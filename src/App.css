@@ -8,6 +8,7 @@
 
 .app {
   background-color: #C2DEDC;
+  font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -22,10 +23,16 @@
   color: #116A7B;
 }
 
+.container h2 {
+  font-family: 'Quicksand', sans-serif;
+}
+
 input {
   display: flex;
   flex-direction: column;
+  width: 500px;
   padding: 8px;
+  font-family: 'Quicksand', sans-serif;
   font-size: 20px;
   margin: 16px 0;
   border-radius: 6px;
@@ -48,6 +55,16 @@ input {
   padding: 8px 0;
 }
 
+button {
+  padding: 20px;
+  background-color: #53ABE7;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 300px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+}
 
 /* ESTILIZAÇÃO ANTERIOR: */
 /* * {

@@ -11,23 +11,24 @@ import { Booktype } from './type';
 
 function App() {
 
-  const [bookTitle, setBookTitle] = useState('');
-  const [bookPages, setBookPages] = useState(0);
+  const [formData, setFormData] = useState({title: '', pages: 0});
+
   const [books, setBooks] = useState<Booktype[]>([]);
-  const [showFormMessage, setShowFormMessage] = useState(false);
+  const [errorsMessages, setErrorMessages] = useState<string[]>([]);
 
-  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setBookTitle(event.target.value);
-  }
-
-  function handlePagesChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setBookPages(event.target.valueAsNumber)
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setFormData(prevData => (
+      {
+        ...prevData,
+        [event.target.name]: event.target.value
+      }
+    ));
   }
 
   function updateState() {
     const newBook = {
-      title: bookTitle,
-      pages: bookPages,
+      title: formData.title,
+      pages: formData.pages,
       isRead: false,
       isFavorite: false,
     };
@@ -35,18 +36,31 @@ function App() {
   }
 
   function resetForm() {
-    setBookTitle('');
-    setBookPages(0);
+    setFormData({title: '', pages: 0});
+  }
+
+  function isFormValid() {
+    const errors = [];
+    // validar o bookTitle
+    if (formData.title === '') {
+      errors.push('O campo Título é obrigatório!')
+    }
+    // validar o bookPages
+    if (formData.pages <= 0) {
+      errors.push('O campo Páginas precisa ser maior que 0!')
+    }
+    // se o array estiver vazio, significa que não tem nenhuma msg de erro.
+    setErrorMessages(errors);
+    return errors.length === 0;
+
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (bookTitle !== '' && bookPages > 0) {
+    if (isFormValid()) {
       updateState();
       resetForm();
-      setShowFormMessage(false);
-    } else {
-      setShowFormMessage(true);
+      setErrorMessages([]);
     }
   }
 // handleSubmit-> Quando fizer o submit do form (botão adicionar), vai chamar a preventDefault para evitar o comportamento padrão do form (que é recarregar a página) e depois vai chamar a função updateState que vai atualizar o estado. Logo após chamar a updateState, chamará a função resetForm para APAGAR o que havia sido digitado no input.
@@ -73,18 +87,22 @@ function App() {
             <input
               type="text"
               placeholder='Título'
-              value={ bookTitle }
-              onChange={ handleNameChange }
+              name="title"
+              value={ formData.title }
+              onChange={ handleChange }
             />
             <input
               type="number"
               placeholder='Quantidade de páginas'
-              value={bookPages}
-              onChange={ handlePagesChange }
+              name="pages"
+              value={ formData.pages }
+              onChange={ handleChange }
             />
-            {showFormMessage && (
+            {errorsMessages && (
               <div className="form-message">
-                <p>Todos os campos são obrigatórios!</p>
+                {errorsMessages.map(message => (
+                  <p>{ message }</p>
+                ))}
               </div>
             )}
             <Button>
