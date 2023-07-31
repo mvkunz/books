@@ -22,8 +22,30 @@
   color: #116A7B;
 }
 
+input {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  font-size: 20px;
+  margin: 16px 0;
+  border-radius: 6px;
+  border: none;
+}
+
 .book-list {
   background-color: #116A7B;
+}
+
+.form-message {
+  color: #e22859;
+  border-left: 3px solid #e22859;
+  padding-left: 8px;
+  background-color: #fafafa;
+  margin: 10px;
+}
+
+.form-message p {
+  padding: 8px 0;
 }
 
 
