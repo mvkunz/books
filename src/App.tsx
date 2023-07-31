@@ -23,7 +23,7 @@ function App() {
     setBookPages(event.target.valueAsNumber)
   }
 
-  function handleAddClick() {
+  function updateState() {
     const newBook = {
       title: bookTitle,
       pages: bookPages,
@@ -32,6 +32,18 @@ function App() {
     };
     setBooks([...books, newBook]);
   }
+
+  function resetForm() {
+    setBookTitle('');
+    setBookPages(0);
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    updateState();
+    resetForm();
+  }
+// handleSubmit-> Quando fizer o submit do form (botão adicionar), vai chamar a preventDefault para evitar o comportamento padrão do form (que é recarregar a página) e depois vai chamar a função updateState que vai atualizar o estado. Logo após chamar a updateState, chamará a função resetForm para APAGAR o que havia sido digitado no input.
 
   return (
     <div className="app">
@@ -47,25 +59,27 @@ function App() {
               book={ book }
             />
           ))}
-        <div className="books-form">
-          <input
-            type="text"
-            placeholder='Título'
-            value={ bookTitle }
-            onChange={ handleNameChange }
-          />
-          <input
-            type="number"
-            placeholder='Quantidade de páginas'
-            value={bookPages}
-            onChange={ handlePagesChange }
-          />
-          <Button
-            onClick={ handleAddClick }
+          <form
+            className="books-form"
+            onSubmit={ handleSubmit }
           >
-            Adicionar
-          </Button>
-        </div>
+            <input
+              type="text"
+              placeholder='Título'
+              value={ bookTitle }
+              onChange={ handleNameChange }
+            />
+            <input
+              type="number"
+              placeholder='Quantidade de páginas'
+              value={bookPages}
+              onChange={ handlePagesChange }
+            />
+            <Button>
+              Adicionar
+            </Button>
+          </form>
+
         </ul>
       </div>
        <Footer />
@@ -84,3 +98,7 @@ export default App
 // Não precisa escrever 'children' aqui para vincular com o title, ele vincula automaticamente.
 
 // NO MAP: foi alterado o objeto para o estado inicial.
+
+// Quando um button está dentro do form, automaticamente vira um tipo submit. É a mesma coisa que colcoar type=submit.
+
+// O preventDefault impede que o comportamento padrão do evento seja realizado. No caso do form, ele impedirá que o form recarregue a página.
