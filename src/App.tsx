@@ -1,9 +1,10 @@
 import { useState } from 'react';
+
 import Header from './components/Header';
 import Title from './components/Title';
 import Footer from './components/Footer';
 import Book from './components/Book';
-import Button from './components/Button/Button';
+import Form from './components/Form';
 
 import './App.css'
 
@@ -11,60 +12,18 @@ import { Booktype } from './type';
 
 function App() {
 
-  const [formData, setFormData] = useState({title: '', pages: 0});
-
   const [books, setBooks] = useState<Booktype[]>([]);
-  const [errorsMessages, setErrorMessages] = useState<string[]>([]);
+  
+  function updateState(title: string, pages: number) {
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setFormData(prevData => (
-      {
-        ...prevData,
-        [event.target.name]: event.target.value
-      }
-    ));
-  }
-
-  function updateState() {
     const newBook = {
-      title: formData.title,
-      pages: formData.pages,
+      title: title,
+      pages: pages,
       isRead: false,
       isFavorite: false,
     };
     setBooks([...books, newBook]);
   }
-
-  function resetForm() {
-    setFormData({title: '', pages: 0});
-  }
-
-  function isFormValid() {
-    const errors = [];
-    // validar o bookTitle
-    if (formData.title === '') {
-      errors.push('O campo Título é obrigatório!')
-    }
-    // validar o bookPages
-    if (formData.pages <= 0) {
-      errors.push('O campo Páginas precisa ser maior que 0!')
-    }
-    // se o array estiver vazio, significa que não tem nenhuma msg de erro.
-    setErrorMessages(errors);
-    return errors.length === 0;
-
-  }
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (isFormValid()) {
-      updateState();
-      resetForm();
-      setErrorMessages([]);
-    }
-  }
-// handleSubmit-> Quando fizer o submit do form (botão adicionar), vai chamar a preventDefault para evitar o comportamento padrão do form (que é recarregar a página) e depois vai chamar a função updateState que vai atualizar o estado. Logo após chamar a updateState, chamará a função resetForm para APAGAR o que havia sido digitado no input.
-// É realizada uma VALIDAÇÃO para verificar se o title NÃO é vazio e se numero de paginas é maior que 0.
 
   return (
     <div className="app">
@@ -73,44 +32,15 @@ function App() {
         <Title
           text={ 'Seus livros:' }
         />
-        <ul className="books-list">
-          {books.map((book) => (
+        {books.map((book) => (
             <Book
-              key= { book.title }
               book={ book }
             />
           ))}
-          <form
-            className="books-form"
-            onSubmit={ handleSubmit }
-          >
-            <input
-              type="text"
-              placeholder='Título'
-              name="title"
-              value={ formData.title }
-              onChange={ handleChange }
-            />
-            <input
-              type="number"
-              placeholder='Quantidade de páginas'
-              name="pages"
-              value={ formData.pages }
-              onChange={ handleChange }
-            />
-            {errorsMessages && (
-              <div className="form-message">
-                {errorsMessages.map(message => (
-                  <p>{ message }</p>
-                ))}
-              </div>
-            )}
-            <Button>
-              Adicionar
-            </Button>
-          </form>
-
-        </ul>
+        <Form
+          submitFunction={ updateState }
+        />
+        
       </div>
        <Footer />
     </div>
